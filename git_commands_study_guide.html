@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Commands Study Guide</title>
+<style>
+  :root {
+    --bg: #f6f8fa;
+    --card: #ffffff;
+    --text: #24292f;
+    --muted: #57606a;
+    --border: #d0d7de;
+    --accent: #0969da;
+    --code-bg: #161b22;
+    --code-text: #e6edf3;
+    --green: #1a7f37;
+    --yellow: #9a6700;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: #161b22;
+    color: white;
+    padding: 48px 20px;
+  }
+  header .wrap, main { max-width: 1050px; margin: auto; }
+  h1 { margin: 0 0 8px; font-size: 2.4rem; }
+  h2 {
+    margin-top: 42px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  h3 { margin-bottom: 8px; }
+  .subtitle { color: #c9d1d9; font-size: 1.1rem; }
+  main { padding: 25px 20px 60px; }
+  .tip, .warning, .success {
+    padding: 15px 18px;
+    border-left: 5px solid;
+    border-radius: 6px;
+    margin: 18px 0;
+    background: var(--card);
+  }
+  .tip { border-color: var(--accent); }
+  .warning { border-color: var(--yellow); }
+  .success { border-color: var(--green); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 18px 0;
+  }
+  code {
+    background: #eef0f2;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 16px;
+    border-radius: 7px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    line-height: 1.5;
+  }
+  .command {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    margin: 18px 0;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 11px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #f0f2f4; }
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 12px 16px;
+    font-weight: 600;
+  }
+  .arrow { font-size: 1.4rem; color: var(--muted); }
+  .small { color: var(--muted); font-size: .95rem; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 30px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Git Commands Study Guide</h1>
+    <div class="subtitle">A beginner-friendly guide to understanding Git, GitHub, commits, branches, merging, and remote repositories.</div>
+  </div>
+</header>
+
+<main>
+
+<div class="tip">
+  <strong>Big idea:</strong> Git is a version-control system. It lets you save versions of your project, see what changed, go back to older versions, and work with other people.
+</div>
+
+<h2>1. Git vs. GitHub</h2>
+
+<div class="card">
+  <h3>Git</h3>
+  <p>Git is the software that tracks changes in your files on your computer.</p>
+
+  <h3>GitHub</h3>
+  <p>GitHub is an online service where Git repositories can be stored and shared.</p>
+
+  <table>
+    <tr><th>Git</th><th>GitHub</th></tr>
+    <tr>
+      <td>Runs on your computer</td>
+      <td>Runs online</td>
+    </tr>
+    <tr>
+      <td>Tracks versions</td>
+      <td>Hosts repositories</td>
+    </tr>
+    <tr>
+      <td>Works without internet for most local operations</td>
+      <td>Useful for collaboration and backup</td>
+    </tr>
+  </table>
+</div>
+
+<h2>2. The Git Workflow</h2>
+
+<p>The most important workflow to remember is:</p>
+
+<div class="flow">
+  <div class="step">Working Directory</div>
+  <div class="arrow">→</div>
+  <div class="step">Staging Area</div>
+  <div class="arrow">→</div>
+  <div class="step">Repository</div>
+  <div class="arrow">→</div>
+  <div class="step">Remote / GitHub</div>
+</div>
+
+<table>
+  <tr><th>Stage</th><th>Meaning</th></tr>
+  <tr>
+    <td>Working Directory</td>
+    <td>The files you are currently editing.</td>
+  </tr>
+  <tr>
+    <td>Staging Area</td>
+    <td>Files you selected to include in the next commit.</td>
+  </tr>
+  <tr>
+    <td>Repository</td>
+    <td>The local Git history containing your commits.</td>
+  </tr>
+  <tr>
+    <td>Remote</td>
+    <td>An online repository, commonly on GitHub.</td>
+  </tr>
+</table>
+
+<h2>3. First-Time Git Setup</h2>
+
+<div class="card">
+  <p class="command">git --version</p>
+  <p>Checks whether Git is installed.</p>
+  <pre>git --version</pre>
+
+  <p class="command">git config --global user.name</p>
+  <p>Sets the name Git records in your commits.</p>
+  <pre>git config --global user.name "Your Name"</pre>
+
+  <p class="command">git config --global user.email</p>
+  <p>Sets the email Git records in your commits.</p>
+  <pre>git config --global user.email "you@example.com"</pre>
+
+  <div class="warning">
+    <strong>Important:</strong> Your Git commit identity is not the same thing as your GitHub password.
+  </div>
+</div>
+
+<h2>4. Create or Download a Repository</h2>
+
+<div class="card">
+  <p class="command">git init</p>
+  <p>Turns an existing folder into a Git repository.</p>
+  <pre>cd my-project
+git init</pre>
+
+  <p class="command">git clone</p>
+  <p>Downloads an existing remote repository to your computer.</p>
+  <pre>git clone https://github.com/username/project.git</pre>
+</div>
+
+<h2>5. Check What Git Sees</h2>
+
+<div class="card">
+  <p class="command">git status</p>
+  <p>One of the most useful Git commands. It tells you which files are modified, staged, or untracked.</p>
+  <pre>git status</pre>
+
+  <p>Example situation:</p>
+  <pre>modified:   main.py
+untracked:  notes.txt</pre>
+
+  <p>This means <code>main.py</code> has changed and <code>notes.txt</code> is a new file Git is not tracking yet.</p>
+</div>
+
+<h2>6. Add Files to the Staging Area</h2>
+
+<div class="card">
+  <p class="command">git add filename</p>
+  <p>Adds one file to the staging area.</p>
+  <pre>git add main.py</pre>
+
+  <p class="command">git add .</p>
+  <p>Adds all changed and untracked files in the current directory.</p>
+  <pre>git add .</pre>
+
+  <div class="tip">
+    Think of <code>git add</code> as saying: <strong>"I want these changes included in my next snapshot."</strong>
+  </div>
+</div>
+
+<h2>7. Commit Your Changes</h2>
+
+<div class="card">
+  <p class="command">git commit -m "message"</p>
+  <p>Creates a permanent snapshot in your local Git history.</p>
+  <pre>git commit -m "Add login page"</pre>
+
+  <p>A good commit message briefly explains what changed.</p>
+
+  <div class="success">
+    <strong>Typical sequence:</strong>
+    <pre>git status
+git add .
+git commit -m "Describe my changes"</pre>
+  </div>
+</div>
+
+<h2>8. View Commit History</h2>
+
+<div class="card">
+  <p class="command">git log</p>
+  <p>Shows your commit history.</p>
+  <pre>git log</pre>
+
+  <p class="command">git log --oneline</p>
+  <p>Shows a shorter version of the history.</p>
+  <pre>git log --oneline</pre>
+</div>
+
+<h2>9. See What Changed</h2>
+
+<div class="card">
+  <p class="command">git diff</p>
+  <p>Shows changes that have not been staged yet.</p>
+  <pre>git diff</pre>
+
+  <p class="command">git diff --staged</p>
+  <p>Shows changes that are already staged.</p>
+  <pre>git diff --staged</pre>
+</div>
+
+<h2>10. Branches</h2>
+
+<p>A branch lets you work on a separate line of development without immediately changing the main branch.</p>
+
+<div class="card">
+  <p class="command">git branch</p>
+  <p>Lists local branches.</p>
+  <pre>git branch</pre>
+
+  <p class="command">git branch feature-login</p>
+  <p>Creates a new branch.</p>
+  <pre>git branch feature-login</pre>
+
+  <p class="command">git switch feature-login</p>
+  <p>Switches to a branch.</p>
+  <pre>git switch feature-login</pre>
+
+  <p class="command">git switch -c feature-login</p>
+  <p>Creates a new branch and switches to it immediately.</p>
+  <pre>git switch -c feature-login</pre>
+</div>
+
+<h2>11. Merge Branches</h2>
+
+<div class="card">
+  <p class="command">git merge branch-name</p>
+  <p>Combines another branch into your current branch.</p>
+
+  <pre>git switch main
+git merge feature-login</pre>
+
+  <p>Here, the changes from <code>feature-login</code> are merged into <code>main</code>.</p>
+</div>
+
+<div class="warning">
+  <strong>Merge conflict:</strong> A conflict can happen when Git cannot automatically decide how two branches' changes should be combined. You must edit the affected file, resolve the conflict, then stage and commit the result.
+</div>
+
+<h2>12. Remote Repositories</h2>
+
+<div class="card">
+  <p class="command">git remote -v</p>
+  <p>Shows the remote repository addresses connected to your project.</p>
+  <pre>git remote -v</pre>
+
+  <p class="command">git remote add origin URL</p>
+  <p>Connects your local repository to a remote repository.</p>
+  <pre>git remote add origin https://github.com/username/project.git</pre>
+</div>
+
+<h2>13. Push: Send Your Commits to GitHub</h2>
+
+<div class="card">
+  <p class="command">git push</p>
+  <p>Sends your local commits to the remote repository.</p>
+  <pre>git push</pre>
+
+  <p class="command">git push -u origin main</p>
+  <p>Pushes the main branch and sets its upstream remote branch.</p>
+  <pre>git push -u origin main</pre>
+
+  <p>After the upstream is configured, you can usually use:</p>
+  <pre>git push</pre>
+</div>
+
+<h2>14. Pull: Get Changes from GitHub</h2>
+
+<div class="card">
+  <p class="command">git pull</p>
+  <p>Downloads remote changes and integrates them into your current branch.</p>
+  <pre>git pull</pre>
+
+  <div class="tip">
+    <strong>Simple memory trick:</strong><br>
+    <code>push</code> = send my commits up<br>
+    <code>pull</code> = bring remote changes down
+  </div>
+</div>
+
+<h2>15. Fetch vs. Pull</h2>
+
+<table>
+  <tr><th>Command</th><th>What it does</th></tr>
+  <tr>
+    <td><code>git fetch</code></td>
+    <td>Downloads information about remote changes without automatically merging them into your current branch.</td>
+  </tr>
+  <tr>
+    <td><code>git pull</code></td>
+    <td>Fetches remote changes and then integrates them into your current branch.</td>
+  </tr>
+</table>
+
+<h2>16. Undoing Changes</h2>
+
+<div class="card">
+  <p class="command">git restore filename</p>
+  <p>Discards unstaged changes in a file, returning it to the version from the current commit.</p>
+  <pre>git restore main.py</pre>
+
+  <div class="warning">
+    This can permanently discard your uncommitted changes in that file. Use it carefully.
+  </div>
+
+  <p class="command">git restore --staged filename</p>
+  <p>Removes a file from the staging area without deleting its changes.</p>
+  <pre>git restore --staged main.py</pre>
+
+  <p class="command">git revert COMMIT_ID</p>
+  <p>Creates a new commit that reverses the effect of an earlier commit.</p>
+  <pre>git revert abc1234</pre>
+</div>
+
+<h2>17. Useful Git Commands Cheat Sheet</h2>
+
+<table>
+  <tr><th>Command</th><th>Purpose</th></tr>
+  <tr><td><code>git --version</code></td><td>Check Git version</td></tr>
+  <tr><td><code>git init</code></td><td>Create a Git repository</td></tr>
+  <tr><td><code>git clone URL</code></td><td>Download a repository</td></tr>
+  <tr><td><code>git status</code></td><td>Check current changes</td></tr>
+  <tr><td><code>git add .</code></td><td>Stage changes</td></tr>
+  <tr><td><code>git commit -m "message"</code></td><td>Save a snapshot</td></tr>
+  <tr><td><code>git log --oneline</code></td><td>View commit history</td></tr>
+  <tr><td><code>git diff</code></td><td>See unstaged changes</td></tr>
+  <tr><td><code>git branch</code></td><td>List branches</td></tr>
+  <tr><td><code>git switch branch</code></td><td>Switch branches</td></tr>
+  <tr><td><code>git switch -c branch</code></td><td>Create and switch to a branch</td></tr>
+  <tr><td><code>git merge branch</code></td><td>Merge a branch</td></tr>
+  <tr><td><code>git remote -v</code></td><td>View remote repositories</td></tr>
+  <tr><td><code>git pull</code></td><td>Get remote changes</td></tr>
+  <tr><td><code>git push</code></td><td>Send commits to remote</td></tr>
+  <tr><td><code>git fetch</code></td><td>Download remote information</td></tr>
+  <tr><td><code>git restore file</code></td><td>Discard unstaged file changes</td></tr>
+  <tr><td><code>git restore --staged file</code></td><td>Unstage a file</td></tr>
+  <tr><td><code>git revert ID</code></td><td>Reverse an earlier commit with a new commit</td></tr>
+</table>
+
+<h2>18. The Most Important Workflow to Memorize</h2>
+
+<div class="card">
+  <p>If you changed code and want to save it to GitHub:</p>
+  <pre># 1. Check what changed
+git status
+
+# 2. Stage your changes
+git add .
+
+# 3. Create a commit
+git commit -m "Describe what I changed"
+
+# 4. Send the commit to GitHub
+git push</pre>
+</div>
+
+<h2>19. Example: A Small Python Project</h2>
+
+<div class="card">
+  <p>Imagine you have:</p>
+  <pre>my-project/
+├── main.py
+├── requirements.txt
+└── README.md</pre>
+
+  <p>You create a Git repository:</p>
+  <pre>cd my-project
+git init</pre>
+
+  <p>You edit <code>main.py</code>, then:</p>
+  <pre>git status
+git add main.py
+git commit -m "Update main program"</pre>
+
+  <p>Later you add a new feature:</p>
+  <pre>git switch -c feature-api
+# edit files
+git add .
+git commit -m "Add API feature"</pre>
+
+  <p>Then return to main and merge:</p>
+  <pre>git switch main
+git merge feature-api</pre>
+
+  <p>Finally, send the result to GitHub:</p>
+  <pre>git push</pre>
+</div>
+
+<h2>20. Beginner Mental Model</h2>
+
+<div class="success">
+  <strong>Remember these four words:</strong>
+  <ol>
+    <li><strong>Change</strong> — edit your files.</li>
+    <li><strong>Add</strong> — choose changes for the next commit.</li>
+    <li><strong>Commit</strong> — save a version in Git history.</li>
+    <li><strong>Push</strong> — send your commits to the remote repository.</li>
+  </ol>
+</div>
+
+<h2>21. Practice Exercise</h2>
+
+<div class="card">
+  <p>Try this sequence in a test folder:</p>
+  <pre>mkdir git-practice
+cd git-practice
+git init
+
+echo "# Git Practice" > README.md
+
+git status
+git add README.md
+git commit -m "Add README"
+
+git log --oneline
+
+git switch -c test-branch
+
+echo "Learning Git" >> README.md
+
+git add README.md
+git commit -m "Update README"
+
+git switch main
+git merge test-branch
+
+git log --oneline</pre>
+
+  <p class="small">On some systems, the default branch may be named <code>master</code> instead of <code>main</code>.</p>
+</div>
+
+<h2>22. Quick Questions to Test Yourself</h2>
+
+<ol>
+  <li>What is the difference between Git and GitHub?</li>
+  <li>What does <code>git status</code> show?</li>
+  <li>What is the purpose of <code>git add</code>?</li>
+  <li>What does a commit represent?</li>
+  <li>What is the difference between <code>git push</code> and <code>git pull</code>?</li>
+  <li>Why would you create a branch?</li>
+  <li>What does <code>git merge</code> do?</li>
+  <li>What is a remote repository?</li>
+  <li>What is the difference between <code>git fetch</code> and <code>git pull</code>?</li>
+  <li>What command can you use to see your commit history?</li>
+</ol>
+
+<h2>23. One-Line Memory Map</h2>
+
+<pre>EDIT → git status → git add → git commit → git push
+                         ↑
+                    save locally
+
+GitHub → git pull → your computer</pre>
+
+<div class="tip">
+  <strong>Study tip:</strong> Don't try to memorize every Git command at once. First become comfortable with
+  <code>status</code>, <code>add</code>, <code>commit</code>, <code>push</code>, <code>pull</code>, <code>branch</code>, <code>switch</code>, and <code>merge</code>.
+</div>
+
+</main>
+
+<footer>
+  Git Commands Study Guide • Beginner Reference
+</footer>
+
+</body>
+</html>
