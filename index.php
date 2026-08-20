@@ -20,7 +20,7 @@ $Major = "Information Technology";
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             text-align: center;
-            margin: 40px;
+            margin: 100px;
         }
         h1 {
             margin-bottom: 10px;
