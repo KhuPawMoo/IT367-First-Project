@@ -1,40 +1,60 @@
 <?php
-    $numbers = [1, 2, 3, 4, 5, 6];
+class Person {
 
-    $first_value = $numbers[0];
+    public $name;
+    public $skinColor;
+    public $dayOfCreation;
+    public $ability;
+    private $id;
+    private $lifeSpan;
 
-    function getMinimum($numbers) {
-        // for($i = $numbers[1]; $i <= 5; $i++) {
-        //     if($first_value > $numbers[$i]) {
-        //         $first_value = $numbers[$i];
-        //     }
-        // }
-        // return $first_value;
-
-        return min($numbers);
+    public functin generateId($id) {
+        $this->id = $id;
     }
 
-    function getMaximum($numbers) {
-        // for($i = $numbers[1]; $i <= 5; $i++) {
-        //     if($first_value < $numbers[$i]) {
-        //         $first_value = $numbers[$i];
-        //     }
-        // }
-        // return $first_value;
+    public function walk() {
 
-        return max($numbers);
     }
+    public function fight() {
 
-    function getAverage($numbers) {
-        // $sum = 0;
-        // $count = 0;
-        // foreach($numbers as $value) {
-        //     $sum = $sum + $value; //$sum += $value;
-
-        //     $count = $count + 1; //$count++;
-        // }
-        // return $sum / $count;
-
-        return array_sum($numbers) / count($numbers);
     }
+    public function kill() {
 
+    }
+    public function jump() {
+
+    }
+    public function run() {
+
+    }
+    public function stop() {
+
+    }
+    public function eat() {
+
+    }
+    public function sleep() {
+
+    }
+    
+
+
+}
+
+//object -> instance of the class
+
+$User1 = new Person();
+
+$User1->name = "Khu";
+$User1->skinColor = "Brown";
+
+$date = new DateTime('2026-06-10');
+$User1->dayOfCreation = $date;
+
+$Player1 = new Person();
+$Player1->name = "Merilyn";
+$Player1->generateId(147);
+
+$Player2 = new Person();
+$Player2->name = "Ahtuutu";
+$Player2->generateId(741);
