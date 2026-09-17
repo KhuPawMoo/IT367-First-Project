@@ -8,7 +8,7 @@ class Person {
     private $id;
     private $lifeSpan;
 
-    public functin generateId($id) {
+    public function generateId($id) {
         $this->id = $id;
     }
 
@@ -36,25 +36,28 @@ class Person {
     public function sleep() {
 
     }
-    
 
+    //default constructor
+    public function __construct() {
+
+    }
 
 }
 
 //object -> instance of the class
 
-$User1 = new Person();
+// $User1 = new Person();
 
-$User1->name = "Khu";
-$User1->skinColor = "Brown";
+// $User1->name = "Khu";
+// $User1->skinColor = "Brown";
 
-$date = new DateTime('2026-06-10');
-$User1->dayOfCreation = $date;
+// $date = new DateTime('2026-06-10');
+// $User1->dayOfCreation = $date;
 
-$Player1 = new Person();
-$Player1->name = "Merilyn";
-$Player1->generateId(147);
+// $Player1 = new Person();
+// $Player1->name = "Merilyn";
+// $Player1->generateId(147);
 
-$Player2 = new Person();
-$Player2->name = "Ahtuutu";
-$Player2->generateId(741);
+// $Player2 = new Person();
+// $Player2->name = "Ahtuutu";
+// $Player2->generateId(741);
