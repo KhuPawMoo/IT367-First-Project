@@ -1,63 +1,27 @@
 <?php
-class Person {
 
-    public $name;
-    public $skinColor;
-    public $dayOfCreation;
-    public $ability;
-    private $id;
-    private $lifeSpan;
+?>
 
-    public function generateId($id) {
-        $this->id = $id;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get">
+        <input type="text" name="student_name" placeholder="Your name...">
+        <!-- <input type="text" name="age" placeholder="Your age..."> -->
+        <input type="text" name="address" placeholder="Your address...">
+        <button type="submit">Submit</button>
+</form>
 
-    public function walk() {
-
-    }
-    public function fight() {
-
-    }
-    public function kill() {
-
-    }
-    public function jump() {
-
-    }
-    public function run() {
-
-    }
-    public function stop() {
-
-    }
-    public function eat() {
-
-    }
-    public function sleep() {
-
-    }
-
-    //default constructor
-    public function __construct() {
-
-    }
-
-}
-
-//object -> instance of the class
-
-// $User1 = new Person();
-
-// $User1->name = "Khu";
-// $User1->skinColor = "Brown";
-
-// $date = new DateTime('2026-06-10');
-// $User1->dayOfCreation = $date;
-
-// $Player1 = new Person();
-// $Player1->name = "Merilyn";
-// $Player1->generateId(147);
-
-// $Player2 = new Person();
-// $Player2->name = "Ahtuutu";
-// $Player2->generateId(741);
+<?php
+if(isset($_GET['student_name']))
+    echo $_GET['student_name'] . "\n";
+if(isset($_GET['address']))
+    echo $_GET['address'] . "\n";
+?>
+</body>
+</html>
